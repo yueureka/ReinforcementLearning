@@ -1,6 +1,7 @@
 # Introduction
 
-In this project, we are going to use DQN algorithm from Deep Reinforcement Learning to train an Unity agent to navitate in a large, squared world. In the envrioment, a reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana. Thus, the goal of your agent is to collect as many yellow bananas as possible while avoiding blue bananas.
+In this project, we are going to use DQN algorithm from Deep Reinforcement Learning to train an Unity agent to navitate in a large, squared world. In the envrioment, a reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana. Thus, the goal of your agent is to collect as many yellow bananas as possible while avoiding blue bananas for a total 300 time steps.
+![Unity agent-Banana Navigation](https://github.com/yueureka/ReinforcementLearning/blob/master/Navigation_DQN/Pics/Environment.PNG)
 
 The state space has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around the agent's forward direction. Four discrete actions are available, corresponding to:
 
@@ -12,7 +13,8 @@ The state space has 37 dimensions and contains the agent's velocity, along with 
 
 3 - turn right.
 
-The task is episodic, after trained with DQN algorthm for 700 esposides, we reached an average score of 15.09 for 100 episode.
+The task is episodic, after trained with DQN algorthm for 700 esposides, we reached an average score of 14.26 for 100 episode.
+![Scores during training](https://github.com/yueureka/ReinforcementLearning/blob/master/Navigation_DQN/Pics/Training%20curve.PNG)
 
 ## File Description 
  * Navigation.ipynb -- the notebook that load and train the Navigation agent, it also describes the theory of DQN and the code to train the agent.
