@@ -9,13 +9,18 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 
-BUFFER_SIZE = int(1e5)  # replay buffer size
+BUFFER_SIZE = int(1e6)  # replay buffer size
 BATCH_SIZE = 128        # minibatch size
 GAMMA = 0.99            # discount factor
 TAU = 1e-3              # for soft update of target parameters
 LR_ACTOR = 1e-4         # learning rate of the actor 
 LR_CRITIC = 1e-3        # learning rate of the critic
 WEIGHT_DECAY = 0        # L2 weight decay
+UPDATE_EVERY = 20       # how often to update the network
+UPDATE_TIMES = 10      # how many times to update the network each time
+
+#EPSILON = 1.0           # epsilon for the noise process added to the actions
+#EPSILON_DECAY = .995    # decay for epsilon above
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -46,20 +51,28 @@ class Agent():
         self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC, weight_decay=WEIGHT_DECAY)
 
         # Noise process
+        #self.epsilon = EPSILON
         self.noise = OUNoise(action_size, random_seed)
 
         # Replay memory
         self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, random_seed)
+        
+        # Initialize time step (for updating every UPDATE_EVERY steps)
+        self.t_step = 0
     
     def step(self, state, action, reward, next_state, done):
         """Save experience in replay memory, and use random sample from buffer to learn."""
         # Save experience / reward
         self.memory.add(state, action, reward, next_state, done)
+        
+        # Learn every UPDATE_EVERY time steps.
+        self.t_step = (self.t_step + 1) % UPDATE_EVERY
 
         # Learn, if enough samples are available in memory
-        if len(self.memory) > BATCH_SIZE:
-            experiences = self.memory.sample()
-            self.learn(experiences, GAMMA)
+        if len(self.memory) > BATCH_SIZE and self.t_step == 0:
+            for _ in range(UPDATE_TIMES):
+                experiences = self.memory.sample()
+                self.learn(experiences, GAMMA)
 
     def act(self, state, add_noise=True):
         """Returns actions for given state as per current policy."""
@@ -101,6 +114,10 @@ class Agent():
         # Minimize the loss
         self.critic_optimizer.zero_grad()
         critic_loss.backward()
+        
+        # perform gradient clipping
+        #torch.nn.utils.clip_grad_norm_(self.critic_local.parameters(), 1) 
+        
         self.critic_optimizer.step()
 
         # ---------------------------- update actor ---------------------------- #
