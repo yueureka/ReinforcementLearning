@@ -116,7 +116,7 @@ class Agent():
         critic_loss.backward()
         
         # perform gradient clipping
-        #torch.nn.utils.clip_grad_norm_(self.critic_local.parameters(), 1) 
+        torch.nn.utils.clip_grad_norm_(self.critic_local.parameters(), 1) 
         
         self.critic_optimizer.step()
 
@@ -149,7 +149,7 @@ class Agent():
 class OUNoise:
     """Ornstein-Uhlenbeck process."""
 
-    def __init__(self, size, seed, mu=0., theta=0.15, sigma=0.2):
+    def __init__(self, size, seed, mu=0., theta=0.15, sigma=0.1):
         """Initialize parameters and noise process."""
         self.mu = mu * np.ones(size)
         self.theta = theta
