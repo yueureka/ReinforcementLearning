@@ -11,7 +11,7 @@ import torch.optim as optim
 
 BUFFER_SIZE = int(1e6)  # replay buffer size
 BATCH_SIZE = 128        # minibatch size
-GAMMA = 0.99            # discount factor
+GAMMA = 0.95            # discount factor
 TAU = 1e-3              # for soft update of target parameters
 LR_ACTOR = 1e-4         # learning rate of the actor 
 LR_CRITIC = 1e-3        # learning rate of the critic
@@ -19,8 +19,8 @@ WEIGHT_DECAY = 0        # L2 weight decay
 UPDATE_EVERY = 20       # how often to update the network
 UPDATE_TIMES = 10      # how many times to update the network each time
 
-#EPSILON = 1.0           # epsilon for the noise process added to the actions
-#EPSILON_DECAY = .995    # decay for epsilon above
+EPSILON = 1.0           # epsilon for the noise process added to the actions
+EPSILON_DECAY = 1e-6    # decay for epsilon above
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -51,7 +51,7 @@ class Agent():
         self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC, weight_decay=WEIGHT_DECAY)
 
         # Noise process
-        #self.epsilon = EPSILON
+        self.epsilon = EPSILON
         self.noise = OUNoise(action_size, random_seed)
 
         # Replay memory
@@ -81,8 +81,10 @@ class Agent():
         with torch.no_grad():
             action = self.actor_local(state).cpu().data.numpy()
         self.actor_local.train()
+        
+        self.epsilon -= EPSILON_DECAY
         if add_noise:
-            action += self.noise.sample()
+            action += np.maximum(self.epsilon, 0.2) * self.noise.sample()
         return np.clip(action, -1, 1)
 
     def reset(self):
@@ -149,7 +151,7 @@ class Agent():
 class OUNoise:
     """Ornstein-Uhlenbeck process."""
 
-    def __init__(self, size, seed, mu=0., theta=0.15, sigma=0.1):
+    def __init__(self, size, seed, mu=0., theta=0.15, sigma=0.2):
         """Initialize parameters and noise process."""
         self.mu = mu * np.ones(size)
         self.theta = theta
