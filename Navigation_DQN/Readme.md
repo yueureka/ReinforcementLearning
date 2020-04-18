@@ -2,7 +2,7 @@
 
 In this project, we are going to use DQN algorithm from Deep Reinforcement Learning to train an Unity agent to navitate in a large, squared world. In the envrioment, a reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana. Thus, the goal of your agent is to collect as many yellow bananas as possible while avoiding blue bananas for a total 300 time steps.
 
-![Unity agent-Banana Navigation](https://github.com/yueureka/ReinforcementLearning/blob/master/Navigation_DQN/Pics/Environment.PNG)
+![Unity agent-Banana Navigation](https://github.com/yueureka/ReinforcementLearning/blob/master/Navigation_DQN/Pics/banana.gif)
 
 The state space has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around the agent's forward direction. Four discrete actions are available, corresponding to:
 
