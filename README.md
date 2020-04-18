@@ -16,7 +16,7 @@ In this project, DDPG algorithm is used to train the Researcher agent. We've 20 
   <img width="460" height="300" src="https://github.com/yueureka/ReinforcementLearning/blob/master/Continuous-Control/Pics/reacher.gif">
 </p>
   
-* [Multi-Agent task: Tennis trained by DDPG:](https://github.com/yueureka/ReinforcementLearning/tree/master/Continuous-Control)
+* [Multi-Agent task: Tennis trained by DDPG:](https://github.com/yueureka/ReinforcementLearning/tree/master/MultiAgent_Tennis)
 This project is similar to Researcher projects, but with two independet agents playing with each other. In this environment, two agents control rackets to bounce a ball over a net. If an agent hits the ball over the net, it receives a reward of +0.1. If an agent lets a ball hit the ground or hits the ball out of bounds, it receives a reward of -0.01. Thus, the goal of each agent is to keep the ball in play.
 The observation space consists of 8 variables corresponding to the position and velocity of the ball and racket. Each agent receives its own, local observation with a total of 24 states. Two continuous actions are available, corresponding to movement toward (or away from) the net, and jumping.
 
