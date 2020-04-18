@@ -2,7 +2,7 @@
 
 In this project, we are going to use DDPG algorithm from Deep Reinforcement Learning to train the muti agent task from Unity [Tennis](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Examples.md#tennis).
 
-![Unity agent-Researcher](https://github.com/yueureka/ReinforcementLearning/blob/master/Continuous-Control/Pics/reacher.gif)
+![Unity agent-Researcher](https://github.com/yueureka/ReinforcementLearning/blob/master/MultiAgent_Tennis/pictures/Tennis.gif)
 
 In this environment, two agents control rackets to bounce a ball over a net. If an agent hits the ball over the net, it receives a reward of +0.1. If an agent lets a ball hit the ground or hits the ball out of bounds, it receives a reward of -0.01. Thus, the goal of each agent is to keep the ball in play.
 
@@ -18,8 +18,8 @@ The observation space consists of 33 variables corresponding to position, rotati
 
 We've 20 identical agents in the enviroment, the task is episodic with 1000 total time steps per episode, after trained with DDPG algorthm for 176 esposides, we reached an average score of 36.96 for 100 episodes.
 
-![Scores during training](https://github.com/yueureka/ReinforcementLearning/blob/master/Continuous-Control/Pics/TrainingScore.PNG)
-![Scores of 100 episodes](https://github.com/yueureka/ReinforcementLearning/blob/master/Continuous-Control/Pics/TestScore.PNG)
+![Scores during training](https://github.com/yueureka/ReinforcementLearning/blob/master/MultiAgent_Tennis/pictures/TrainingScore.PNG)
+![Scores of 100 episodes](https://github.com/yueureka/ReinforcementLearning/blob/master/MultiAgent_Tennis/pictures/TestScore.PNG)
 
 ## File Description 
  * Countinuous_control.ipynb -- the notebook that load and train the Navigation agent, it also describes the theory of DDPG and the code to train the agent.
