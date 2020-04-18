@@ -22,11 +22,13 @@ We've 20 identical agents in the enviroment, the task is episodic with 1000 tota
 ![Scores of 100 episodes](https://github.com/yueureka/ReinforcementLearning/blob/master/MultiAgent_Tennis/pictures/TestScore.PNG)
 
 ## File Description 
- * Countinuous_control.ipynb -- the notebook that load and train the Navigation agent, it also describes the theory of DDPG and the code to train the agent.
+ * Tennis.ipynb -- the notebook that load and train the Navigation agent, it also describes the theory of DDPG and the code to train the agent.
  * DDPG_agent.py -- the python library that contains the Agent class, RelayBuffer and OUNoise class, it will be imported to the Navigation.ipynb to train the agent. 
  * model.py -- the torch class for both Actor and Critic class of the DDPG model
- * checkpoint_actor.pth.pth -- the saved actor torch model that's been trained with DQN algorithm, you may direct load the model and run the agent.  
- * checkpoint_critic.pth.pth -- the saved critic torch model that's been trained with DQN algorithm, you may direct load the model and run the agent.  
+ * agent1_checkpoint_actor.pth -- the saved actor torch model that's been trained with DDPG algorithm for agent 1, you may direct load the model and run the agent.  
+ * agent1_checkpoint_critic.pth -- the saved critic torch model that's been trained with DDPG algorithm for agent 1, you may direct load the model and run the agent.  
+  * agent2_checkpoint_actor.pth -- the saved actor torch model that's been trained with DDPG algorithm for agent 2, you may direct load the model and run the agent.  
+ * agent2_checkpoint_critic.pth -- the saved critic torch model that's been trained with DDPG algorithm for agent 2, you may direct load the model and run the agent.  
 
 ## Installation Instruction
 
